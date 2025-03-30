@@ -2,7 +2,6 @@
 {
     public class Tire
     {
-        // $G$ DSN-999 (-3) The "maximum air pressure" field should be readonly member of class wheel.
         private string m_ManufacturerName;
         private  float m_CurrentAirPressure;
         private  float m_MaxAirPressure;

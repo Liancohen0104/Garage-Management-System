@@ -54,7 +54,6 @@ namespace Ex03.GarageLogic
             m_CargoVolume = float.Parse(i_UserAnswers["Cargo volume"]);
         }
 
-        // $G$ DSN-003 (-5) Logic is not responsible for the way user interaction is handled. Questions are not Properties.
         private void initializeUniqueTruckQuestions()
         {
             StringBuilder refrigeratedBuilder = new StringBuilder();

@@ -4,7 +4,6 @@ namespace Ex03.GarageLogic
 {
     public class FuelEngine: Engine
     {
-        // $G$ DSN-999 (-3) The "fuel type" field should be readonly member of class FuelEnergyProvider.
         private eFuelType m_FuelType;
 
         public FuelEngine(eFuelType i_FuelType)
