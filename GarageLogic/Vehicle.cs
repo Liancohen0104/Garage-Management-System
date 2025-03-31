@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
     public abstract class Vehicle
     {
@@ -12,8 +12,8 @@ namespace Ex03.GarageLogic
 
         protected Vehicle(Engine i_EngineType, string i_LicensePlateNumber)
         {
-            this.m_EngineType = i_EngineType;
-            this.r_LicensePlateNumber = i_LicensePlateNumber;
+            m_EngineType = i_EngineType;
+            r_LicensePlateNumber = i_LicensePlateNumber;
             m_UserInputQuestions = new Dictionary<string, string>();
         }
 
@@ -21,11 +21,11 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return this.m_UserInputQuestions;
+                return m_UserInputQuestions;
             }
             set
             {
-                this.m_UserInputQuestions = value;
+                m_UserInputQuestions = value;
             }
         }
 
@@ -33,11 +33,11 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return this.m_ModelName;
+                return m_ModelName;
             }
             set
             {
-                this.m_ModelName = value;
+                m_ModelName = value;
             }
         }
 
@@ -45,7 +45,7 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return this.r_LicensePlateNumber;
+                return r_LicensePlateNumber;
             }
         }
 
@@ -53,11 +53,11 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return this.m_EngineType;
+                return m_EngineType;
             }
             set
             {
-                this.m_EngineType = value;
+                m_EngineType = value;
             }
         }
 
@@ -65,11 +65,11 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return this.m_TierList;
+                return m_TierList;
             }
             set
             {
-                this.m_TierList = value;
+                m_TierList = value;
             }
         }
 
@@ -79,7 +79,7 @@ namespace Ex03.GarageLogic
 
         public void SetCurrentTire(Tire i_CurrentTire, string i_CurrentManufacturer, float i_CurrentAirPressure)
         {
-            if(i_CurrentAirPressure < 0 || i_CurrentAirPressure > i_CurrentTire.MaxAirPressure)
+            if (i_CurrentAirPressure < 0 || i_CurrentAirPressure > i_CurrentTire.MaxAirPressure)
             {
                 throw new ValueOutOfRangeException(0, i_CurrentTire.MaxAirPressure);
             }
@@ -97,10 +97,10 @@ namespace Ex03.GarageLogic
 
             vehicleDetailsDictionary["License plate number"] = LicensePlateNumber;
             vehicleDetailsDictionary["Model Name"] = ModelName;
-            foreach(Tire currentTire in m_TierList)
+            foreach (Tire currentTire in m_TierList)
             {
                 vehicleDetailsDictionary[$"Tire {tireIndex++}:"] = currentTire.ToString();
-                
+
             }
 
             vehicleDetailsDictionary["Energy details"] = EngineType.ToString();

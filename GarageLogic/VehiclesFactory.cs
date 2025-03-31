@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
     public class VehiclesFactory
     {
         public static readonly List<string> sr_VehicleType =
-            new List<string> {"Fuel Motorcycle", "Electric Motorcycle", "Fuel Car", "Electric Car", "Truck" };
+            new List<string> { "Fuel Motorcycle", "Electric Motorcycle", "Fuel Car", "Electric Car", "Truck" };
 
-    public static Vehicle CreateVehicle(string i_VehicleType, string i_LicensePlateNumber)
+        public static Vehicle CreateVehicle(string i_VehicleType, string i_LicensePlateNumber)
         {
             Vehicle newVehicle = null;
 

@@ -1,4 +1,4 @@
-﻿namespace Ex03.ConsoleUI
+﻿namespace ConsoleUI
 {
     public enum eUserActionsInGarage
     {

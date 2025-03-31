@@ -1,20 +1,20 @@
-﻿namespace Ex03.GarageLogic
+﻿namespace GarageLogic
 {
     public class Tire
     {
         private string m_ManufacturerName;
-        private  float m_CurrentAirPressure;
-        private  float m_MaxAirPressure;
+        private float m_CurrentAirPressure;
+        private float m_MaxAirPressure;
 
         public string ManufacturerName
         {
             get
             {
-                return this.m_ManufacturerName;
+                return m_ManufacturerName;
             }
             set
             {
-                this.m_ManufacturerName = value;
+                m_ManufacturerName = value;
             }
         }
 
@@ -22,11 +22,11 @@
         {
             get
             {
-                return this.m_CurrentAirPressure;
+                return m_CurrentAirPressure;
             }
             set
             {
-                this.m_CurrentAirPressure = value;
+                m_CurrentAirPressure = value;
             }
         }
 
@@ -34,11 +34,11 @@
         {
             get
             {
-                return this.m_MaxAirPressure;
+                return m_MaxAirPressure;
             }
             set
             {
-                this.m_MaxAirPressure = value;
+                m_MaxAirPressure = value;
             }
         }
 

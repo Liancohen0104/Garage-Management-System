@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
     public class Truck : Vehicle
     {
@@ -20,11 +20,11 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return this.m_IsRefrigerated;
+                return m_IsRefrigerated;
             }
             set
             {
-                this.m_IsRefrigerated = value;
+                m_IsRefrigerated = value;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Ex03.GarageLogic
 
         public override void SetUniqueFieldsForVehicle(Dictionary<string, string> i_UserAnswers)
         {
-            switch(i_UserAnswers["Refrigerated"])
+            switch (i_UserAnswers["Refrigerated"])
             {
                 case "1":
                     m_IsRefrigerated = true;
@@ -61,8 +61,8 @@ namespace Ex03.GarageLogic
             refrigeratedBuilder.AppendLine("Please select if your truck is refrigerated ot not");
             refrigeratedBuilder.AppendLine("1) Yes");
             refrigeratedBuilder.AppendLine("2) No");
-            this.m_UserInputQuestions.Add("Refrigerated", refrigeratedBuilder.ToString());
-            this.m_UserInputQuestions.Add("Cargo volume", "Enter your truck cargo volume:");
+            m_UserInputQuestions.Add("Refrigerated", refrigeratedBuilder.ToString());
+            m_UserInputQuestions.Add("Cargo volume", "Enter your truck cargo volume:");
         }
 
         public override void FieldsValidation(Dictionary<string, string> i_UserAnswers)
@@ -75,9 +75,9 @@ namespace Ex03.GarageLogic
         {
             float cargoVolume;
 
-            if(float.TryParse(i_UserAnswers["Cargo volume"], out cargoVolume))
+            if (float.TryParse(i_UserAnswers["Cargo volume"], out cargoVolume))
             {
-                if(cargoVolume < 0 || cargoVolume > float.MaxValue)
+                if (cargoVolume < 0 || cargoVolume > float.MaxValue)
                 {
                     throw new ValueOutOfRangeException(0, float.MaxValue, "Cargo volume");
                 }
@@ -111,7 +111,7 @@ namespace Ex03.GarageLogic
 
             vehicleDetailsDictionary = base.GetDetailsFieldsForVehicle();
             vehicleDetailsDictionary["Cargo volume"] = m_CargoVolume.ToString();
-            if(IsRefrigerated)
+            if (IsRefrigerated)
             {
                 vehicleDetailsDictionary["Is Refrigerated"] = "Yes";
             }

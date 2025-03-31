@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
-    public class FuelEngine: Engine
+    public class FuelEngine : Engine
     {
         private eFuelType m_FuelType;
 
         public FuelEngine(eFuelType i_FuelType)
         {
-            this.m_FuelType = i_FuelType;
+            m_FuelType = i_FuelType;
         }
 
         public void RefuelEnergy(float i_EnergyAmount, eFuelType i_UserChooseFuelType)

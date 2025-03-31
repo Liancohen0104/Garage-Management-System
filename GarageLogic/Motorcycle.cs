@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
-    public class Motorcycle: Vehicle
+    public class Motorcycle : Vehicle
     {
         private eLicenceType m_LicenceType;
         private int m_EngineDisplacement;
 
         public Motorcycle(Engine i_EngineType, string i_LicensePlateNumber) : base(i_EngineType, i_LicensePlateNumber)
         {
-            if(i_EngineType is ElectricEngine)
+            if (i_EngineType is ElectricEngine)
             {
                 i_EngineType.MaxEnergyCapacity = 2.9f;
             }
@@ -38,7 +38,7 @@ namespace Ex03.GarageLogic
         public override void SetUniqueFieldsForVehicle(Dictionary<string, string> i_UserAnswers)
         {
             m_EngineDisplacement = int.Parse(i_UserAnswers["Engine displacement"]);
-            switch(i_UserAnswers["License type"])
+            switch (i_UserAnswers["License type"])
             {
                 case "1":
                     m_LicenceType = eLicenceType.A1;
@@ -64,8 +64,8 @@ namespace Ex03.GarageLogic
             licenseTypeBuilder.AppendLine("2) A2");
             licenseTypeBuilder.AppendLine("3) B1");
             licenseTypeBuilder.AppendLine("4) B2");
-            this.m_UserInputQuestions.Add("License type", licenseTypeBuilder.ToString());
-            this.m_UserInputQuestions.Add("Engine displacement", "Enter your engine displacement:");
+            m_UserInputQuestions.Add("License type", licenseTypeBuilder.ToString());
+            m_UserInputQuestions.Add("Engine displacement", "Enter your engine displacement:");
         }
 
         public override void FieldsValidation(Dictionary<string, string> i_UserAnswers)

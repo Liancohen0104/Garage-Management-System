@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Ex03.GarageLogic;
+using GarageLogic;
 
-namespace Ex03.ConsoleUI
+namespace ConsoleUI
 {
     public class ConsoleUi
     {
@@ -21,7 +21,7 @@ namespace Ex03.ConsoleUI
                 Console.ReadLine();
                 Console.Clear();
             }
-            while(userAction != eUserActionsInGarage.Exit);
+            while (userAction != eUserActionsInGarage.Exit);
         }
 
         private void printActionMenu()
@@ -67,7 +67,7 @@ namespace Ex03.ConsoleUI
                 }
             }
 
-            switch(indexUserAction.ToString())
+            switch (indexUserAction.ToString())
             {
                 case "1":
                     userAction = eUserActionsInGarage.AddNewVehicle;
@@ -159,7 +159,7 @@ namespace Ex03.ConsoleUI
             eVehicleStatus newVehicleStatus = eVehicleStatus.InRepair;
             int indexUserVehicleStatus = 0;
             bool isValidInput = false;
-            
+
             vehicleStatusBuilder.AppendLine("Please select a new vehicle status in the garage");
             vehicleStatusBuilder.AppendLine("1) InRepair");
             vehicleStatusBuilder.AppendLine("2) Repaired");
@@ -212,7 +212,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                string  newVehicleType = selectYourVehicleType();
+                string newVehicleType = selectYourVehicleType();
                 Vehicle newVehicle = m_GarageManager.AddVehicle(licensePlateNumber, newVehicleType);
                 Dictionary<string, string> userAnswers = null;
                 bool isValidInput = false;
@@ -227,12 +227,12 @@ namespace Ex03.ConsoleUI
                         isValidInput = true;
                         newVehicle.SetUniqueFieldsForVehicle(userAnswers);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
                 }
-                while(!isValidInput);
+                while (!isValidInput);
                 getAndSetUserInfo(licensePlateNumber);
             }
         }
@@ -251,10 +251,10 @@ namespace Ex03.ConsoleUI
             string userInput = null;
 
             o_UserAnswers = new Dictionary<string, string>();
-            foreach (KeyValuePair<string,string> question in i_CurrentVehicle.UserInputQuestions)
+            foreach (KeyValuePair<string, string> question in i_CurrentVehicle.UserInputQuestions)
             {
                 bool isValidFormat = false;
-                    
+
                 Console.WriteLine(question.Value);
                 userInput = Console.ReadLine();
                 o_UserAnswers[question.Key] = userInput;
@@ -305,7 +305,7 @@ namespace Ex03.ConsoleUI
             long longLicensePlateNumber = 0;
 
             Console.WriteLine("Enter your license plate number: ");
-            while(!isValidLicensePlateNumber)
+            while (!isValidLicensePlateNumber)
             {
                 if (long.TryParse(Console.ReadLine(), out longLicensePlateNumber))
                 {
@@ -327,12 +327,12 @@ namespace Ex03.ConsoleUI
         private void getAndSetUserCurrentEnergy(Vehicle i_CurrentVehicle)
         {
             float currentEnergyInput = 0;
-            bool  isValidInput = false;
+            bool isValidInput = false;
 
             Console.WriteLine("Enter your vehicle's current energy: ");
             while (!isValidInput)
             {
-                if(!float.TryParse(Console.ReadLine(), out currentEnergyInput))
+                if (!float.TryParse(Console.ReadLine(), out currentEnergyInput))
                 {
                     Console.WriteLine("Invalid format, please enter a numeric value.");
                 }
@@ -344,7 +344,7 @@ namespace Ex03.ConsoleUI
                         i_CurrentVehicle.EngineType.CurrentEnergy = currentEnergyInput;
                         isValidInput = true;
                     }
-                    catch(ValueOutOfRangeException ex)
+                    catch (ValueOutOfRangeException ex)
                     {
                         Console.WriteLine("Current energy" + ex.Message);
                     }
@@ -358,7 +358,7 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine("Enter your vehicle's model name");
             userModelName = Console.ReadLine();
-            while(string.IsNullOrWhiteSpace(userModelName))
+            while (string.IsNullOrWhiteSpace(userModelName))
             {
                 Console.WriteLine("The input can't be empty, please try again");
                 userModelName = Console.ReadLine();
@@ -375,11 +375,11 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Choose option:");
             Console.WriteLine("1) Enter the same mode for all tires");
             Console.WriteLine("2) Enter mode for each tire separately");
-            while(!isValidIndexOption)
+            while (!isValidIndexOption)
             {
-                if(int.TryParse(Console.ReadLine() ,out userChoose))
+                if (int.TryParse(Console.ReadLine(), out userChoose))
                 {
-                    if(userChoose >= 1 && userChoose <= 2)
+                    if (userChoose >= 1 && userChoose <= 2)
                     {
                         isValidIndexOption = true;
                     }
@@ -394,7 +394,7 @@ namespace Ex03.ConsoleUI
                 }
             }
 
-            if(userChoose == 1)
+            if (userChoose == 1)
             {
                 getAndSetSameModeTire(i_CurrentVehicle);
             }
@@ -407,8 +407,8 @@ namespace Ex03.ConsoleUI
         private void getAndSetSameModeTire(Vehicle i_CurrentVehicle)
         {
             string userManufacturerName;
-            float  userCurrentAirPressure;
-            bool   isValidAirPressure = false;
+            float userCurrentAirPressure;
+            bool isValidAirPressure = false;
 
             Console.WriteLine("Enter your tires manufacturer name");
             userManufacturerName = Console.ReadLine();
@@ -418,7 +418,7 @@ namespace Ex03.ConsoleUI
                 userManufacturerName = Console.ReadLine();
             }
 
-            while(!isValidAirPressure)
+            while (!isValidAirPressure)
             {
                 Console.WriteLine("Enter your tire air pressure:");
                 while (!float.TryParse(Console.ReadLine(), out userCurrentAirPressure))
@@ -428,7 +428,7 @@ namespace Ex03.ConsoleUI
 
                 try
                 {
-                    for(int i = 0; i < i_CurrentVehicle.TierList.Count; ++i)
+                    for (int i = 0; i < i_CurrentVehicle.TierList.Count; ++i)
                     {
                         i_CurrentVehicle.SetCurrentTire(i_CurrentVehicle.TierList[i], userManufacturerName, userCurrentAirPressure);
                     }
@@ -445,15 +445,15 @@ namespace Ex03.ConsoleUI
         private void getAndSetSeparatelyTire(Vehicle i_CurrentVehicle)
         {
             string userManufacturerName;
-            float  userCurrentAirPressure;
-            int    tireIndex = 0;
+            float userCurrentAirPressure;
+            int tireIndex = 0;
 
-            while(tireIndex < i_CurrentVehicle.TierList.Count) 
+            while (tireIndex < i_CurrentVehicle.TierList.Count)
             {
                 Console.WriteLine("Setting tire {0}", tireIndex + 1);
                 Console.WriteLine("Enter your tire manufacturer name");
                 userManufacturerName = Console.ReadLine();
-                while(string.IsNullOrWhiteSpace(userManufacturerName))
+                while (string.IsNullOrWhiteSpace(userManufacturerName))
                 {
                     Console.WriteLine("Manufacturer name can't be empty, please try again");
                     userManufacturerName = Console.ReadLine();
@@ -470,7 +470,7 @@ namespace Ex03.ConsoleUI
                     i_CurrentVehicle.SetCurrentTire(i_CurrentVehicle.TierList[tireIndex], userManufacturerName, userCurrentAirPressure);
                     ++tireIndex;
                 }
-                catch(ValueOutOfRangeException ex)
+                catch (ValueOutOfRangeException ex)
                 {
                     Console.WriteLine("Tire air pressure" + ex.Message);
                 }
@@ -479,17 +479,17 @@ namespace Ex03.ConsoleUI
 
         private string selectYourVehicleType()
         {
-            bool   isValidIndexVehicleType = false;
-            int    vehicleTypeIndex = 1;
+            bool isValidIndexVehicleType = false;
+            int vehicleTypeIndex = 1;
             string userVehicleType = null;
 
             Console.WriteLine("Please select vehicle type");
-            foreach(string vehicleTypeItem in VehiclesFactory.sr_VehicleType)
+            foreach (string vehicleTypeItem in VehiclesFactory.sr_VehicleType)
             {
                 Console.WriteLine($"{vehicleTypeIndex++}) {vehicleTypeItem}");
             }
 
-            while(!isValidIndexVehicleType)
+            while (!isValidIndexVehicleType)
             {
                 if (int.TryParse(Console.ReadLine(), out vehicleTypeIndex))
                 {
@@ -515,9 +515,9 @@ namespace Ex03.ConsoleUI
         private void displayListOfLicensePlate()
         {
             bool isValidIndexOption = false;
-            int  userChoose = 0;
+            int userChoose = 0;
             StringBuilder filterOptionBuilder = new StringBuilder();
-            List<string>  filteredLicensePlateNumberList = new List<string>();
+            List<string> filteredLicensePlateNumberList = new List<string>();
 
             filterOptionBuilder.AppendLine("Please select option");
             filterOptionBuilder.AppendLine("1) Show all");
@@ -544,17 +544,17 @@ namespace Ex03.ConsoleUI
                 }
             }
 
-            switch(userChoose.ToString())
+            switch (userChoose.ToString())
             {
                 case "1":
-                    foreach (KeyValuePair< string,VehicleInGarage> vehicleInGarageItem in m_GarageManager.VehiclesInGarage)
+                    foreach (KeyValuePair<string, VehicleInGarage> vehicleInGarageItem in m_GarageManager.VehiclesInGarage)
                     {
                         Console.WriteLine(vehicleInGarageItem.Key);
                     }
                     break;
                 case "2":
                     m_GarageManager.FilterVehicleByStatus(eVehicleStatus.InRepair, ref filteredLicensePlateNumberList);
-                    foreach(string licensePlateNumber in filteredLicensePlateNumberList)
+                    foreach (string licensePlateNumber in filteredLicensePlateNumberList)
                     {
                         Console.WriteLine(licensePlateNumber);
                     }
@@ -581,10 +581,10 @@ namespace Ex03.ConsoleUI
             bool isValidUserInput = false;
             string licensePlateNumber = null;
 
-            while(!isValidUserInput)
+            while (!isValidUserInput)
             {
                 licensePlateNumber = getLicensePlateNumber();
-                if(!m_GarageManager.IsVehicleInGarage(licensePlateNumber))
+                if (!m_GarageManager.IsVehicleInGarage(licensePlateNumber))
                 {
                     if (checkIfUserWantToBackToMainMenu())
                     {
@@ -640,7 +640,7 @@ namespace Ex03.ConsoleUI
                     }
                 }
             }
-            while(!isFuelEngine);
+            while (!isFuelEngine);
             fuelTypeOptionBuilder.AppendLine("Please select fuel type");
             fuelTypeOptionBuilder.AppendLine("1) Soler");
             fuelTypeOptionBuilder.AppendLine("2) Octan95");
@@ -733,7 +733,7 @@ namespace Ex03.ConsoleUI
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    if(checkIfUserWantToBackToMainMenu())
+                    if (checkIfUserWantToBackToMainMenu())
                     {
                         isValidUserInput = true;
                         break;
@@ -780,7 +780,7 @@ namespace Ex03.ConsoleUI
                 else
                 {
                     Dictionary<string, string> vehicleDetails = m_GarageManager.GetVehicleDetails(licensePlateNumber);
-                    foreach (KeyValuePair<string,string> currentDetail in vehicleDetails)
+                    foreach (KeyValuePair<string, string> currentDetail in vehicleDetails)
                     {
                         Console.WriteLine(currentDetail.Key + ": " + currentDetail.Value);
                     }

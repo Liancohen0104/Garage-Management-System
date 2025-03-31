@@ -1,4 +1,4 @@
-﻿namespace Ex03.GarageLogic
+﻿namespace GarageLogic
 {
     public enum eDoorsAmount
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
-    public class ElectricEngine: Engine
+    public class ElectricEngine : Engine
     {
         public void RechargeEnergy(float i_EnergyAmountInHours)
         {

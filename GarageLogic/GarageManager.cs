@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
     public class GarageManager
     {
@@ -9,18 +9,18 @@ namespace Ex03.GarageLogic
 
         public GarageManager()
         {
-            this.m_VehiclesInGarage = new Dictionary<string, VehicleInGarage>();
+            m_VehiclesInGarage = new Dictionary<string, VehicleInGarage>();
         }
 
         public Dictionary<string, VehicleInGarage> VehiclesInGarage
         {
             get
             {
-                return this.m_VehiclesInGarage;
+                return m_VehiclesInGarage;
             }
             set
             {
-                this.m_VehiclesInGarage = value;
+                m_VehiclesInGarage = value;
             }
         }
 
@@ -60,9 +60,9 @@ namespace Ex03.GarageLogic
 
         public void FilterVehicleByStatus(eVehicleStatus i_UserChoiceStatus, ref List<string> o_PlateNumberList)
         {
-            foreach (KeyValuePair<string,VehicleInGarage> vehicleInGarageItem in VehiclesInGarage)
+            foreach (KeyValuePair<string, VehicleInGarage> vehicleInGarageItem in VehiclesInGarage)
             {
-                if(vehicleInGarageItem.Value.VehicleStatus == i_UserChoiceStatus)
+                if (vehicleInGarageItem.Value.VehicleStatus == i_UserChoiceStatus)
                 {
                     o_PlateNumberList.Add(vehicleInGarageItem.Key);
                 }
@@ -71,7 +71,7 @@ namespace Ex03.GarageLogic
 
         public void SetAirPressureToMax(string i_LicensePlateNumber)
         {
-            foreach(Tire currentTire in m_VehiclesInGarage[i_LicensePlateNumber].CurrentVehicle.TierList)
+            foreach (Tire currentTire in m_VehiclesInGarage[i_LicensePlateNumber].CurrentVehicle.TierList)
             {
                 currentTire.CurrentAirPressure = currentTire.MaxAirPressure;
             }
@@ -105,7 +105,7 @@ namespace Ex03.GarageLogic
                 .RechargeEnergy(i_EnergyAmount / 60);
         }
 
-        public Dictionary<string,string> GetVehicleDetails(string i_LicensePlateNumber)
+        public Dictionary<string, string> GetVehicleDetails(string i_LicensePlateNumber)
         {
             Dictionary<string, string> vehicleDetails =
                 m_VehiclesInGarage[i_LicensePlateNumber].CurrentVehicle.GetDetailsFieldsForVehicle();

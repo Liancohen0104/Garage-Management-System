@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex03.GarageLogic
+namespace GarageLogic
 {
-    public class Car: Vehicle
+    public class Car : Vehicle
     {
-        private  eCarColor m_CarColor;
-        private  eDoorsAmount m_DoorsAmount;
+        private eCarColor m_CarColor;
+        private eDoorsAmount m_DoorsAmount;
 
         public Car(Engine i_EngineType, string i_LicensePlateNumber) : base(i_EngineType, i_LicensePlateNumber)
         {
@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
 
         public override void SetUniqueFieldsForVehicle(Dictionary<string, string> i_UserAnswers)
         {
-            switch(i_UserAnswers["Doors count"])
+            switch (i_UserAnswers["Doors count"])
             {
                 case "2":
                     m_DoorsAmount = eDoorsAmount.TwoDoors;
@@ -81,8 +81,8 @@ namespace Ex03.GarageLogic
             carColorBuilder.AppendLine("2) Black");
             carColorBuilder.AppendLine("3) White");
             carColorBuilder.AppendLine("4) Gray");
-            this.m_UserInputQuestions.Add("Car color", carColorBuilder.ToString());
-            this.m_UserInputQuestions.Add("Doors count", "Enter your doors count:");
+            m_UserInputQuestions.Add("Car color", carColorBuilder.ToString());
+            m_UserInputQuestions.Add("Doors count", "Enter your doors count:");
         }
 
         public override void FieldsValidation(Dictionary<string, string> i_UserAnswers)
@@ -95,7 +95,7 @@ namespace Ex03.GarageLogic
         {
             int doorsCount;
 
-            if(int.TryParse(i_UserAnswers["Doors count"], out doorsCount))
+            if (int.TryParse(i_UserAnswers["Doors count"], out doorsCount))
             {
                 if (doorsCount < 2 || doorsCount > 5)
                 {
@@ -128,7 +128,7 @@ namespace Ex03.GarageLogic
         public override Dictionary<string, string> GetDetailsFieldsForVehicle()
         {
             Dictionary<string, string> vehicleDetailsDictionary = new Dictionary<string, string>();
-            
+
             vehicleDetailsDictionary = base.GetDetailsFieldsForVehicle();
             vehicleDetailsDictionary["Car color"] = m_CarColor.ToString();
             vehicleDetailsDictionary["Doors count"] = ((int)m_DoorsAmount).ToString();
